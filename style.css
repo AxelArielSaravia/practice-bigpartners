@@ -1,0 +1,422 @@
+:root {
+    --font: verdada,BlinkMacSystemFont,"Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+    --color-text: #f6f6f9;
+    --color-background: #2d2a33;
+    --color-red: #f25c5c;
+    --color-outline: #f6cd97;
+    scrollbar-color: var(--color-text) var(--color-background);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+h1,h2,h3,h4,p {
+    margin: 0;
+}
+
+picture {
+    display: inline-block;
+    width: 100%;
+}
+
+input, textarea {
+    font-family: var(--font);
+    background: transparent;
+    border: 1px solid var(--color-text);
+    border-radius: 0;
+    padding: 1ch 2ch;
+    color: var(--color-text);
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 4ch;
+}
+
+:is(input, textarea):user-invalid {
+    border-color: var(--color-red);
+}
+
+:is(a,input,textarea, button):focus-visible {
+    outline-color: var(--color-outline);
+}
+
+body {
+    display: flex;
+    position: relative;
+    margin: 0;
+    padding: 0;
+
+    color: var(--color-text);
+    background: var(--color-background);
+
+    font-family: var(--font);
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+
+    scrollbar-color: var(--color-text) var(--color-background);
+}
+
+header {
+    background: linear-gradient(to bottom, #141313, var(--color-background));
+    box-sizing: border-box;
+    padding: 5ch;
+    overflow: auto;
+}
+
+header :is(a,button,textarea,input) {
+    font-size: .8em;
+}
+
+.icon {
+    width: 3ch;
+    height: 3ch;
+}
+.icon-container {
+    aspect-ratio: 1/1;
+    height: 100%;
+}
+
+.head {
+    margin-bottom: 4ch;
+}
+
+
+.head h1, .head h2 {
+    width: min-content;
+    letter-spacing: .2ch;
+    line-height: 1.2;
+}
+.head h1 {
+    font-weight: 900;
+    margin-bottom: 1ch;
+}
+
+.head h2 {
+    margin-bottom: 2ch;
+}
+
+
+.head .blog {
+    --transition: all .3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 1ch;
+}
+.head .blog .icon.heart {
+    width: 2ch;
+    transition: var(--transition);
+}
+.head .blog .text {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-bottom: .2ch;
+}
+
+.head .blog .text::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: .2ch;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-text);
+    translate: -100% 0;
+    transition: var(--transition);
+}
+
+.button {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-text);
+    padding: 1ch 2ch;
+    cursor: pointer;
+    transition: all .3s;
+    position: relative;
+    font-weight: bold;
+}
+.button::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.footer .close.button {
+    border: none;
+    background: transparent;
+    padding: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .head .blog:is(:hover,:focus-visible) .icon.heart {
+        color: var(--color-red);
+    }
+    .head .blog:is(:hover,:focus-visible) .text::after {
+        translate: 0;
+    }
+
+    .button:hover {
+        background: var(--color-text);
+        color: var(--color-background);
+        border-color: transparent;
+    }
+    .footer .close.button:hover {
+        color: var(--color-text);
+    }
+}
+
+
+.footer .form:not([data-display="0"]) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1ch;
+}
+
+.footer .form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+    width: 100%;
+}
+
+.footer .form-open {
+    position: relative;
+}
+
+.footer .form-open::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: .2ch;
+    top: 0;
+    left: 0;
+    background-color: var(--color-text);
+    translate: 0 -2ch;
+}
+
+.footer .form-open h3 {
+    margin-bottom: 1ch;
+    font-weight: 999;
+}
+
+.required {
+    position: relative;
+}
+.required span {
+    position: absolute;
+    right: .5ch;
+    top: .5ch;
+}
+.required :is(input,textarea):user-invalid+span {
+    color: var(--color-red);
+}
+
+.footer .media {
+    margin-top: 5ch;
+}
+
+.footer .media div {
+    margin-top: 1ch;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2ch;
+}
+
+main {
+    overflow: hidden;
+    flex-shrink: 1;
+}
+
+main .item {
+    --transition: translate .5s;
+    display: flex;
+    position: relative;
+    width: 100%;
+    background: var(--color-background);
+}
+a.item:focus-visible {
+    outline-color: var(--color-background);
+    outline-offset: -1ch;
+}
+
+main .item picture {
+    max-width: 1600px;
+}
+
+main .item img {
+    object-fit: cover;
+    max-width: 1600px;
+}
+
+main .item section {
+    flex-grow: 1;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 1ch 0 4ch;
+
+    color: var(--color-text);
+    background: var(--color-background);
+    line-height: 1.2;
+}
+
+main .item h2 {
+    font-weight: 900;
+}
+main .item small {
+    margin-bottom: 1ch;
+    opacity: .5;
+}
+
+@media (min-width: 1980.01px) {
+    body {
+        font-size: 1vw;
+    }
+    main .item section {
+        min-width: 40%;
+    }
+}
+
+@media (max-width: 1980px) {
+    header .logo {
+        max-width: 20ch;
+        width: 100%;
+    }
+    main .item section {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
+
+@media (min-width: 975.01px) and (max-width: 1980px) {
+    main .item section {
+        width: 40%;
+    }
+}
+
+
+@media (min-width: 767.01px) and (max-width: 1980px) {
+    main .item {
+        aspect-ratio: 4/1;
+    }
+}
+
+@media (min-width: 767.01px) and (max-width: 1980px) and (pointer: fine) {
+    main .item section {
+        translate: 100% 0;
+        transition: var(--transition);
+    }
+    main .item picture {
+        transition: var(--transition);
+    }
+    main .item {
+        aspect-ratio: 4/1;
+    }
+}
+
+@media (min-width: 767.01px)
+    and (max-width: 1980px)
+    and (hover: hover)
+    and (pointer: fine) {
+    main .item:is(:hover,:focus-visible) section {
+        translate:0;
+    }
+    main .item:is(:hover,:focus-visible) picture {
+        translate: -10% 0;
+    }
+}
+
+@media (max-width: 767px),
+    (max-width: 975px) and (not (pointer:fine)) {
+    main .item section {
+        background: linear-gradient(to right, var(--color-background) 30%, transparent);
+    }
+}
+
+@media screen and (min-width: 767.01px) {
+    header {
+        width: 30%;
+        min-width: 300px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+    }
+    main {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    body {
+        flex-direction: column;
+    }
+    header {
+        width: 100%;
+    }
+    main {
+        width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    body {
+        font-size: 5vw;
+    }
+}
+/*UTILS*/
+.sr-only {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    width: 0;
+    height: 0;
+    position: absolute;
+    overflow: hidden;
+    white-space: nowrap;
+}
+[data-display="0"] {
+    display: none;
+}
+
+@media (prefers-reduced-motion) {
+    .head .blog .text::after {
+        translate: 0 0;
+        transition: none;
+    }
+    .footer .form-open button {
+        transition: none;
+    }
+    main .item :is(section,picture) {
+        transition: none;
+    }
+}
